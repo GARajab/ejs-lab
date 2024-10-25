@@ -9,7 +9,9 @@ app.get("/", (req, res) => {
 })
 
 app.get("/menu", (req, res) => {
-  res.render("menu.ejs")
+  res.render("menu.ejs", {
+    restaurant: RESTAURANT,
+  })
 })
 
 const RESTAURANT = {
@@ -65,14 +67,19 @@ const RESTAURANT = {
     },
   ],
 }
-
 RESTAURANT.menu.forEach((meal) => {
+  const headers = [...RESTAURANT.menu]
   if (meal.category === "mains") {
+    headers.push(meal)
     console.log(meal)
   } else if (meal.category === "desserts") {
-    console.log("meal")
+    // const headers = [...RESTAURANT.menu]
+    // headers.push(meal)
+    // console.log(meal)
   } else {
-    console.log("sides")
+    // const headers = [...RESTAURANT.menu]
+    headers.push(meal)
+    console.log(meal)
   }
 })
 

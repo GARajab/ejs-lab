@@ -6,18 +6,28 @@
     <title>Menu</title>
   </head>
   <body>
+    <%- include("./partials/nav.ejs")%>
     <h1>Full Menu</h1>
 
     <ul>
-      <% restaurant.menu.forEach(function(item) { %>
-      <li>
-        <%= item.name %> - $<%= item.price %>
-        <br />
-        Rating: <%= item.rating %>
-        <br />
-        Details: <%= item.details %>
-      </li>
-      <% }) %>
+      <% let mainDishesDisplayed = false; let dessertsDisplayed = false; let
+      sidesDisplayed = false; %> <% restaurant.menu.forEach((item) => { %> <% if
+      (item.category === "mains" && !mainDishesDisplayed) { %>
+      <h2>Main Dishes</h2>
+      <% mainDishesDisplayed = true; %> <% } %> <% if (item.category ===
+      "mains") { %>
+      <li><%= item.name %> - $<%= item.price.toFixed(2) %></li>
+      <% } %> <% if (item.category === "desserts" && !dessertsDisplayed) { %>
+      <h2>Desserts</h2>
+      <% dessertsDisplayed = true; %> <% } %> <% if (item.category ===
+      "desserts") { %>
+      <li><%= item.name %> - $<%= item.price.toFixed(2) %></li>
+      <% } %> <% if (item.category === "sides" && !sidesDisplayed) { %>
+      <h2>Sides</h2>
+      <% sidesDisplayed = true; %> <% } %> <% if (item.category === "sides") {
+      %>
+      <li><%= item.name %> - $<%= item.price.toFixed(2) %></li>
+      <% } %> <% }) %>
     </ul>
   </body>
 </html>
