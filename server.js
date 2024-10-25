@@ -11,6 +11,30 @@ app.get("/", (req, res) => {
 app.get("/menu", (req, res) => {
   res.render("menu.ejs", {
     restaurant: RESTAURANT,
+    categorizedMenus: categorizedMenus,
+  })
+})
+
+app.get("/menu/:category", (req, res) => {
+  const category = req.params.category
+  const menuItems = []
+
+  // Filter menu items based on the category
+  RESTAURANT.menu.forEach((menuCat) => {
+    if (menuCat.category === category) {
+      menuItems.push(menuCat)
+    }
+  })
+
+  // Render with populated menuItems
+  res.render("category.ejs", {
+    restaurant: RESTAURANT,
+    categorizedMenus: categorizedMenus,
+    menuItems: {
+      mains: menuItems.filter((item) => item.category === "mains"),
+      desserts: menuItems.filter((item) => item.category === "desserts"),
+      sides: menuItems.filter((item) => item.category === "sides"),
+    },
   })
 })
 
@@ -67,21 +91,26 @@ const RESTAURANT = {
     },
   ],
 }
-RESTAURANT.menu.forEach((meal) => {
-  const headers = [...RESTAURANT.menu]
-  if (meal.category === "mains") {
-    headers.push(meal)
-    console.log(meal)
-  } else if (meal.category === "desserts") {
-    // const headers = [...RESTAURANT.menu]
-    // headers.push(meal)
-    // console.log(meal)
-  } else {
-    // const headers = [...RESTAURANT.menu]
-    headers.push(meal)
-    console.log(meal)
+
+// Log menu items by category
+const categorizedMenus = {
+  mains: [],
+  desserts: [],
+  sides: [],
+}
+
+RESTAURANT.menu.forEach((item) => {
+  if (item.category in categorizedMenus) {
+    categorizedMenus[item.category].push(item)
   }
 })
 
 PORT = 3000
 app.listen(PORT)
+
+// res.render("category.ejs")
+// let filterCategory = [...RESTAURANT.menu],
+// categorizedMenus: categorizedMenus,
+// if (category) {
+//   filterCategory = filterCategory.filter((cat) => cat.category === "main")
+// }

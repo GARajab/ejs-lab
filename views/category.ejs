@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+  </head>
+  <body>
+    <%- include("./partials/nav.ejs")%>
+    <h1>Full Menu</h1>
+
+    <h2>Mains</h2>
+    <ul>
+      <% if (menuItems.mains && menuItems.mains.length > 0) { %> <%
+      menuItems.mains.forEach(category => { %>
+      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
+      <p><%= category.details %></p>
+      <% }) } %>
+    </ul>
+
+    <h2>Desserts</h2>
+    <ul>
+      <% menuItems.desserts.forEach(category => { %>
+      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
+      <p><%= category.details %></p>
+      <% }) %>
+    </ul>
+
+    <h2>Sides</h2>
+    <ul>
+      <% menuItems.sides.forEach(category => { %>
+      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
+      <p><%= category.details %></p>
+      <% }) %>
+    </ul>
+  </body>
+</html>
