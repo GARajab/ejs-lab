@@ -14,7 +14,8 @@
       <% if (menuItems.mains && menuItems.mains.length > 0) { %> <%
       menuItems.mains.forEach(category => { %>
       <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%= category.details %></p>
+      <p><%=` Rating is: ${category.rating} `%></p>
+      <p><%= ` Details: ${category.details} ` %></p>
       <% }) } %>
     </ul>
 
@@ -22,7 +23,8 @@
     <ul>
       <% menuItems.desserts.forEach(category => { %>
       <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%= category.details %></p>
+      <p><%=` Rating is: ${category.rating} `%></p>
+      <p><%= ` Details: ${category.details} ` %></p>
       <% }) %>
     </ul>
 
@@ -30,7 +32,8 @@
     <ul>
       <% menuItems.sides.forEach(category => { %>
       <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%= category.details %></p>
+      <p><%=` Rating is: ${category.rating} `%></p>
+      <p><%= ` Details: ${category.details} ` %></p>
       <% }) %>
     </ul>
   </body>
