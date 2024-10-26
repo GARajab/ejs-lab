@@ -3,26 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      <% let currentCategory = category.charAt(0).toUpperCase() +
-      category.slice(1) %> <%= currentCategory.charAt(0).toUpperCase() +
-      currentCategory.slice(1)%>
-    </title>
+    <title> </title>
     <!-- Dynamic title -->
   </head>
   <body>
-    <%- include("./partials/nav.ejs") %>
+    <%- include("./partials/nav.ejs") %> <% const categories = ['mains',
+    'desserts', 'sides']; %>
     <h1>Full Menu</h1>
 
-    <% const categories = ['mains', 'desserts', 'sides']; %>
     <!-- Define categories -->
 
     <% categories.forEach(category => { %>
+
     <!-- Loop through each category -->
-    <h2>
-      <% let currentCategory = category.charAt(0).toUpperCase() +
-      category.slice(1) %>
-    </h2>
+    <h2><%category.charAt(0).toUpperCase() + category.slice(1) %></h2>
     <!-- Display category name -->
     <ul>
       <% if (menuItems[category] && menuItems[category].length > 0) { %> <%
@@ -30,12 +24,8 @@
       <li><strong><%= item.name %></strong> - $<%= item.price %></li>
       <p>Rating is: <%= item.rating %></p>
       <p>Details: <%= item.details %></p>
-      <% }) %> <% } else { %>
-      <li>No items available in this category.</li>
-      <% } %>
+      <% }) %> <% }%>
     </ul>
-    <% if (category === 'mains') { currentCategory = 'Mains'; } %> <% if
-    (category === 'desserts') { currentCategory = 'Desserts'; } %> <% if
-    (category === 'sides') { currentCategory = 'Sides'; } %> <% }) %>
+    <% }) %>
   </body>
 </html>

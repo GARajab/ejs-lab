@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>Menu</title>
   </head>
   <body>
     <%- include("./partials/nav.ejs")%>
     <h1>Full Menu</h1>
 
     <h2>Mains</h2>
+
     <ul>
       <% categorizedMenus.mains.forEach(item => { %>
       <li><strong><%= item.name %></strong> - $<%= item.price %></li>
-      <p><%=` Rating is: ${item.rating} `%></p>
-      <p><%= ` Details: ${item.details} ` %></p>
+      <p><%= item.details %></p>
       <% }) %>
     </ul>
 
@@ -22,8 +22,7 @@
     <ul>
       <% categorizedMenus.desserts.forEach(item => { %>
       <li><strong><%= item.name %></strong> - $<%= item.price %></li>
-      <p><%=` Rating is: ${item.rating} `%></p>
-      <p><%= ` Details: ${item.details} ` %></p>
+      <p><%= item.details %></p>
       <% }) %>
     </ul>
 
