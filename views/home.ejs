@@ -21,7 +21,7 @@
       <li>
         <%= item.name %> - $<%= item.price %>
         <br />
-        Rating: <%= item.rating %>
+        Rating: <%= item.rating %><%= item.rating === 5 ? ' ⭐' : '' %>
         <br />
         Category: <%= item.category %>
         <br />

@@ -19,14 +19,12 @@ app.get("/menu/:category", (req, res) => {
   const category = req.params.category
   const menuItems = []
 
-  // Filter menu items based on the category
   RESTAURANT.menu.forEach((menuCat) => {
     if (menuCat.category === category) {
       menuItems.push(menuCat)
     }
   })
 
-  // Render with populated menuItems
   res.render("category.ejs", {
     restaurant: RESTAURANT,
     categorizedMenus: categorizedMenus,
@@ -35,6 +33,7 @@ app.get("/menu/:category", (req, res) => {
       desserts: menuItems.filter((item) => item.category === "desserts"),
       sides: menuItems.filter((item) => item.category === "sides"),
     },
+    currentCategory: category,
   })
 })
 
@@ -92,7 +91,6 @@ const RESTAURANT = {
   ],
 }
 
-// Log menu items by category
 const categorizedMenus = {
   mains: [],
   desserts: [],
@@ -106,11 +104,6 @@ RESTAURANT.menu.forEach((item) => {
 })
 
 PORT = 3000
-app.listen(PORT)
-
-// res.render("category.ejs")
-// let filterCategory = [...RESTAURANT.menu],
-// categorizedMenus: categorizedMenus,
-// if (category) {
-//   filterCategory = filterCategory.filter((cat) => cat.category === "main")
-// }
+if (app.listen(PORT)) {
+  console.log(`Server Running from Port: ${PORT}`)
+}

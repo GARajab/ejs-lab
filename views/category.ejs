@@ -3,26 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> </title>
-    <!-- Dynamic title -->
+    <title>
+      <%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1) %>
+    </title>
   </head>
   <body>
     <%- include("./partials/nav.ejs") %> <% const categories = ['mains',
     'desserts', 'sides']; %>
-    <h1>Full Menu</h1>
-
-    <!-- Define categories -->
-
+    <h1>
+      <%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)%>
+    </h1>
     <% categories.forEach(category => { %>
-
-    <!-- Loop through each category -->
-    <h2><%category.charAt(0).toUpperCase() + category.slice(1) %></h2>
-    <!-- Display category name -->
     <ul>
       <% if (menuItems[category] && menuItems[category].length > 0) { %> <%
       menuItems[category].forEach(item => { %>
       <li><strong><%= item.name %></strong> - $<%= item.price %></li>
-      <p>Rating is: <%= item.rating %></p>
+      <p>Rating is: <%= item.rating %> <%= item.rating === 5 ? '⭐' : '' %></p>
       <p>Details: <%= item.details %></p>
       <% }) %> <% }%>
     </ul>
