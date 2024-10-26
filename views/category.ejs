@@ -3,38 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu</title>
+    <title>
+      <% let currentCategory = category.charAt(0).toUpperCase() +
+      category.slice(1) %> <%= currentCategory.charAt(0).toUpperCase() +
+      currentCategory.slice(1)%>
+    </title>
+    <!-- Dynamic title -->
   </head>
   <body>
-    <%- include("./partials/nav.ejs")%>
+    <%- include("./partials/nav.ejs") %>
     <h1>Full Menu</h1>
 
-    <h2>Mains</h2>
-    <ul>
-      <% if (menuItems.mains && menuItems.mains.length > 0) { %> <%
-      menuItems.mains.forEach(category => { %>
-      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%=` Rating is: ${category.rating} `%></p>
-      <p><%= ` Details: ${category.details} ` %></p>
-      <% }) } %>
-    </ul>
+    <% const categories = ['mains', 'desserts', 'sides']; %>
+    <!-- Define categories -->
 
-    <h2>Desserts</h2>
+    <% categories.forEach(category => { %>
+    <!-- Loop through each category -->
+    <h2>
+      <% let currentCategory = category.charAt(0).toUpperCase() +
+      category.slice(1) %>
+    </h2>
+    <!-- Display category name -->
     <ul>
-      <% menuItems.desserts.forEach(category => { %>
-      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%=` Rating is: ${category.rating} `%></p>
-      <p><%= ` Details: ${category.details} ` %></p>
-      <% }) %>
+      <% if (menuItems[category] && menuItems[category].length > 0) { %> <%
+      menuItems[category].forEach(item => { %>
+      <li><strong><%= item.name %></strong> - $<%= item.price %></li>
+      <p>Rating is: <%= item.rating %></p>
+      <p>Details: <%= item.details %></p>
+      <% }) %> <% } else { %>
+      <li>No items available in this category.</li>
+      <% } %>
     </ul>
-
-    <h2>Sides</h2>
-    <ul>
-      <% menuItems.sides.forEach(category => { %>
-      <li><strong><%= category.name %></strong> - $<%= category.price %></li>
-      <p><%=` Rating is: ${category.rating} `%></p>
-      <p><%= ` Details: ${category.details} ` %></p>
-      <% }) %>
-    </ul>
+    <% if (category === 'mains') { currentCategory = 'Mains'; } %> <% if
+    (category === 'desserts') { currentCategory = 'Desserts'; } %> <% if
+    (category === 'sides') { currentCategory = 'Sides'; } %> <% }) %>
   </body>
 </html>
